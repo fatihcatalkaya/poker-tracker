@@ -1,0 +1,35 @@
+{#include base.html}
+    {#body}
+        <div class="container is-flex is-justify-content-center">
+            <div class="card" style="max-width: 20rem; margin-top: 3rem">
+                <div class="card-content">
+                    <div class="content">
+                        <form method="post" action="/j_security_check">
+                            <div class="field">
+                                <div class="control">
+                                    <input id="username" name="j_username" class="input" type="text"
+                                           placeholder="Benutzername" required>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <input id="password" name="j_password" class="input" type="password"
+                                           placeholder="Passwort" required>
+                                </div>
+                            </div>
+                            <input type="hidden" name="{inject:csrf.parameterName}" value="{inject:csrf.token}"/>
+                            <div class="control">
+                                <button class="button is-primary is-fullwidth" type="submit">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {/body}
+    {#script}
+        <script type="application/javascript">
+            document.getElementById('username').focus();
+        </script>
+    {/script}
+{/include}
