@@ -1,0 +1,24 @@
+<table class="table is-fullwidth mt-2" id="playertable">
+    <thead>
+    <tr>
+        <th style="max-width: 0.5rem">ID</th>
+        <th>Name</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {#for player in players}
+        <tr>
+            <td style="max-width: 0.5rem"><code>{player.id}</code></td>
+            <td>{player.name}</td>
+            <td style="text-align: right">
+                <a class="button is-danger is-small"
+                   hx-delete="/app/player/{player.id}"
+                   hx-target="#playertable">
+                    Löschen
+                </a>
+            </td>
+        </tr>
+    {/for}
+    </tbody>
+</table>

@@ -12,7 +12,7 @@ import jakarta.ws.rs.core.MediaType;
 @Path("/app")
 public class AppIndexView {
   @Inject
-  @Location("app_index.html")
+  @Location("app/index.html")
   Template template;
 
   @GET
