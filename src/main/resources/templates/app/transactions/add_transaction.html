@@ -1,0 +1,38 @@
+{#include app/app_base.html}
+  {#content}
+    <div class="container">
+      <article class="message is-info mt-2">
+        <div class="message-header">
+          <p>Transaction hinzufügen</p>
+        </div>
+        <div class="message-body">
+          <form hx-post="/app/transaction" hx-target="#transactiontable" hx-on::after-request="this.reset()">
+            <div class="field">
+              <div class="select mt-2 is-fullwidth">
+                <label>
+                  <select name="player_id">
+                    {#for player in players}
+                      <option value="{player.id}">{player.name}</option>
+                    {/for}
+                  </select>
+                </label>
+              </div>
+              <div class="control mt-2">
+                <input class="input" type="number" inputmode="numeric" pattern="[0-9]*" placeholder="Betrag" name="amount">
+              </div>
+            </div>
+            <input type="hidden" name="{inject:csrf.parameterName}" value="{inject:csrf.token}"/>
+            <div class="control">
+              <button class="button is-primary is-fullwidth"
+                      type="submit"
+              >Speichern
+              </button>
+            </div>
+          </form>
+        </div>
+      </article>
+
+      {#include app/transactions/last_transactions.html}{/include}
+    </div>
+  {/content}
+{/include}

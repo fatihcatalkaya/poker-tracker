@@ -1,0 +1,32 @@
+<table class="table is-fullwidth mt-2" id="playertable">
+  <thead>
+  <tr>
+    <th style="max-width: 0.5rem">ID</th>
+    <th>Name</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  {#for player in players}
+  <tr>
+    <td style="max-width: 0.5rem"><code>{player.id}</code></td>
+    <td>{player.name}</td>
+    <td style="text-align: right">
+      <button class="button is-danger is-small"
+         hx-delete="/app/player/{player.id}"
+         hx-headers='{ "{inject:csrf.headerName}":"{inject:csrf.token}" }'
+         hx-trigger="confirmed"
+         hx-target="#playertable"
+         onClick="Swal.fire( { showCancelButton: true, cancelButtonText: 'Abbrechen', title: 'Wirklich löschen?', text:'Möchtest du wirklich den Spieler {player.name} und alle Transaktionen löschen?' } ).then((result)=>{
+                 if(result.isConfirmed){
+                  htmx.trigger(this, 'confirmed');
+                 }
+                 })">
+        Löschen
+      </button>
+    </td>
+  </tr>
+  {/for}
+  </tbody>
+</table>
+<script src="/webjars/sweetalert2/11.11.1/dist/sweetalert2.all.min.js"></script>

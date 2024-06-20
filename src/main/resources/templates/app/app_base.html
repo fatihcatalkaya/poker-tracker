@@ -25,7 +25,7 @@
                         Spieler
                     </a>
 
-                    <a class="navbar-item">
+                    <a class="navbar-item" href="/app/transaction">
                         Transaktion hinzufügen
                     </a>
                 </div>
@@ -64,8 +64,7 @@
 
             const logout = () => {
                 // delete the credential cookie, essentially killing the session
-                const removeCookie = 'quarkus-credential=; Max-Age=0;path=/';
-                document.cookie = removeCookie;
+                document.cookie = 'quarkus-credential=; Max-Age=0;path=/';
 
                 // perform post-logout actions here, such as redirecting back to your login page
                 window.location.href = '/';

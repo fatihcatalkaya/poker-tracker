@@ -15,6 +15,9 @@ public class PlayerService {
   @Inject
   DSLContext jooq;
 
+  @Inject
+  TransactionService transactionService;
+
   public List<Player> getAllPlayers() {
     return jooq.select(PLAYER.ID, PLAYER.NAME)
         .from(PLAYER)
@@ -29,7 +32,12 @@ public class PlayerService {
         .execute();
   }
 
-  public void deletePlayer(int id) {
-    jooq.deleteFrom(PLAYER).where(PLAYER.ID.eq(id)).execute();
+  public boolean existsPlayer(int playerId) {
+    return jooq.fetchExists(jooq.select().from(PLAYER).where(PLAYER.ID.eq(playerId)));
+  }
+
+  public void deletePlayer(int playerId) {
+    transactionService.deleteAllTransactionsForPlayer(playerId);
+    jooq.deleteFrom(PLAYER).where(PLAYER.ID.eq(playerId)).execute();
   }
 }

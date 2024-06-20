@@ -1,5 +1,22 @@
 {#include app/app_base.html}
     {#content}
-        <h1>Hello World!</h1>
+        <div class="container">
+            <table class="table is-fullwidth mt-2">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th style="text-align: right">Betrag</th>
+                </tr>
+                </thead>
+                <tbody>
+                {#for amount in amounts}
+                    <tr>
+                        <td>{amount.playerName}</td>
+                        <td style="text-align: right">{amount.amount}</td>
+                    </tr>
+                {/for}
+                </tbody>
+            </table>
+        </div>
     {/content}
 {/include}

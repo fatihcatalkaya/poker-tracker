@@ -15,16 +15,15 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import java.util.List;
-import org.jboss.resteasy.reactive.RestPath;
 
 @Path("/app/player")
 public class PlayerView {
   @Inject
-  @Location("app/player.html")
+  @Location("app/player/player.html")
   Template page;
 
   @Inject
-  @Location("app/player_table.html")
+  @Location("app/player/player_table.html")
   Template table;
 
   @Inject
@@ -53,6 +52,7 @@ public class PlayerView {
   @Path("/{playerId:\\d+}")
   public String deletePlayer(@PathParam("playerId") int playerId) {
     playerService.deletePlayer(playerId);
-    return get();
+    List<Player> players = playerService.getAllPlayers();
+    return table.data("players", players).render();
   }
 }
