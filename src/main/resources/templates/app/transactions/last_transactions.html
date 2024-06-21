@@ -1,8 +1,7 @@
 <table class="table is-fullwidth mt-2" id="transactiontable">
     <thead>
     <tr>
-        <th style="max-width: 0.5rem">ID</th>
-        <th style="max-width: 2rem">Zeitpunkt</th>
+        <th style="max-width: 5rem">Zeitpunkt</th>
         <th>Name</th>
         <th style="text-align: right">Betrag</th>
     </tr>
@@ -10,10 +9,9 @@
     <tbody>
     {#for transaction in transactions}
         <tr class="{#if transaction.amount < 0}has-background-danger-light{#else}has-background-success-light{/if}">
-            <td style="max-width: 0.5rem"><code>{transaction.id}</code></td>
-            <td style="max-width: 2rem">{time:format(transaction.timestamp,'dd. MMM uuuu HH:mm')}</td>
-            <td>{transaction.playerName}</td>
-            <td style="text-align: right">{transaction.amount}</td>
+            <td style="max-width: 5rem" class="has-text-black">{time:format(transaction.timestamp,'dd. MMM uuuu HH:mm')}</td>
+            <td class="has-text-black">{transaction.playerName}</td>
+            <td style="text-align: right" class="has-text-black">{transaction.amount}</td>
         </tr>
     {/for}
     </tbody>
