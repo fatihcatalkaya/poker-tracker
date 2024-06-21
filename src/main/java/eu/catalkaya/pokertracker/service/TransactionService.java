@@ -43,10 +43,10 @@ public class TransactionService {
         .fetch(mapping(PlayerAmountDto::new));
   }
 
-  public void createTransaction(int playerId, float amount) {
+  public void createTransaction(int playerId, float amount, LocalDateTime dateTime) {
     jooq.insertInto(TRANSACTIONS)
-        .columns(TRANSACTIONS.PLAYER_ID, TRANSACTIONS.AMOUNT)
-        .values(playerId, amount)
+        .columns(TRANSACTIONS.PLAYER_ID, TRANSACTIONS.AMOUNT, TRANSACTIONS.CREATED_AT)
+        .values(playerId, amount, dateTime)
         .execute();
   }
 
