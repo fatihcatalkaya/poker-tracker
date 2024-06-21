@@ -14,6 +14,7 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import java.time.LocalDate;
 import java.util.List;
 
 @Path("/app/transaction")
@@ -39,7 +40,11 @@ public class TransactionView {
   public String get(){
     List<Player> players = playerService.getAllPlayers();
     List<LatestTransactionDto> latestTransactions = transactionService.getLatestTransactions();
-    return template.data("players", players).data("transactions", latestTransactions).render();
+    return template
+        .data("players", players)
+        .data("transactions", latestTransactions)
+        .data("today", LocalDate.now())
+        .render();
   }
 
   @POST

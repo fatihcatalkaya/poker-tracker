@@ -58,7 +58,7 @@ public class AppIndexView {
               .map(BigDecimal::toString)
               .collect(Collectors.joining(","));
           return String.format(""" 
-                  { name: %s,
+                  { name: '%s',
                     symbolSize: 20,
                     type: 'line',
                     smooth: true,

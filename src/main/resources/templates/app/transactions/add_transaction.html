@@ -3,10 +3,10 @@
     <div class="container">
       <article class="message is-info mt-2">
         <div class="message-header">
-          <p>Transaction hinzufügen</p>
+          <p>Transaktion hinzufügen</p>
         </div>
         <div class="message-body">
-          <form hx-post="/app/transaction" hx-target="#transactiontable" hx-on::after-request="this.reset()">
+          <form hx-post="/app/transaction" hx-target="#transactiontable" hx-on::after-request="this.reset();document.getElementById('inputAmount').focus();">
             <div class="field">
               <div class="select mt-2 is-fullwidth">
                 <label>
@@ -18,7 +18,10 @@
                 </label>
               </div>
               <div class="control mt-2">
-                <input class="input" type="number" inputmode="numeric" pattern="[0-9]*" placeholder="Betrag" name="amount">
+                <input class="input" type="number" inputmode="numeric" pattern="[0-9]*" placeholder="Betrag" name="amount" id="inputAmount">
+              </div>
+              <div class="control mt-2">
+                <input class="input" type="date" placeholder="Datum" name="date" value="{today}">
               </div>
             </div>
             <input type="hidden" name="{inject:csrf.parameterName}" value="{inject:csrf.token}"/>
