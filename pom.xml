@@ -22,6 +22,7 @@
         <sqlite.version>3.46.0.0</sqlite.version>
         <htmx.version>2.0.0-beta4</htmx.version>
         <sweetalert2.version>11.11.1</sweetalert2.version>
+        <echarts.version>5.4.3</echarts.version>
     </properties>
 
     <dependencyManagement>
@@ -72,6 +73,11 @@
             <groupId>org.webjars.npm</groupId>
             <artifactId>sweetalert2</artifactId>
             <version>${sweetalert2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>echarts</artifactId>
+            <version>${echarts.version}</version>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
