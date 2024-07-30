@@ -12,14 +12,14 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
         <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
-        <quarkus.platform.version>3.11.3</quarkus.platform.version>
+        <quarkus.platform.version>3.12.3</quarkus.platform.version>
         <skipITs>true</skipITs>
         <surefire-plugin.version>3.2.5</surefire-plugin.version>
         <bulma.version>1.0.1</bulma.version>
         <jooq.version>3.19.10</jooq.version>
         <quarkus.jooq.version>2.0.1</quarkus.jooq.version>
         <sqlite.version>3.46.0.0</sqlite.version>
-        <htmx.version>2.0.0-beta4</htmx.version>
+        <htmx.version>2.0.1</htmx.version>
         <sweetalert2.version>11.11.1</sweetalert2.version>
         <echarts.version>5.4.3</echarts.version>
     </properties>
