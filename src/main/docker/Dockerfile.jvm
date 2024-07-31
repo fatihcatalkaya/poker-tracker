@@ -1,7 +1,7 @@
 FROM maven:3-eclipse-temurin-21-alpine AS builder
 WORKDIR /usr/src/project
 COPY . .
-RUN mvn package -DskipTests -Dquarkus.package.output-name=poker-tracker
+RUN mvn clean package -DskipTests -Dquarkus.package.output-name=poker-tracker
 RUN jar xf target/poker-tracker-runner.jar
 RUN jdeps --ignore-missing-deps --multi-release 21 --print-module-deps --class-path 'BOOT-INF/lib/*' target/poker-tracker-runner.jar > deps.info
 RUN jlink --add-modules $(cat deps.info) --strip-debug --compress zip-6 --no-header-files --no-man-pages --output /myjre

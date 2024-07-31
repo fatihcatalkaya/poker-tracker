@@ -7,7 +7,7 @@ permissions:
 
 jobs:
   build-image:
-    name: Run Jib builder
+    name: Run container build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -29,4 +29,4 @@ jobs:
           QUARKUS_JIB_BASE_REGISTRY_USERNAME: ${{ github.actor }}
           QUARKUS_JIB_BASE_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
           QUARKUS_CONTAINER_IMAGE_ADDITIONAL_TAGS: latest
-        run: mvn -Dquarkus.container-image.registry=ghcr.io -Dquarkus.container-image.name=poker-tracker -Dquarkus.container-image.group=fatih-catalkaya -Dquarkus.container-image.push=true quarkus:image-build
+        run: mvn -Dquarkus.container-image.registry=ghcr.io -Dquarkus.container-image.name=poker-tracker -Dquarkus.container-image.group=fatih-catalkaya -Dquarkus.container-image.push=true clean package quarkus:image-build
