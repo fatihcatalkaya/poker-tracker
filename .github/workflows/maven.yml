@@ -1,32 +1,11 @@
 name: Build project
 on:
   push:
-    branches:
-      - master
 
 permissions:
   packages: write
 
 jobs:
-  build-jar:
-    name: Run Maven build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          java-version: '21'
-          distribution: 'temurin'
-          cache: maven
-      - name: Run Maven
-        run: mvn package
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: JAR file
-          path: target/poker-tracker-*.jar
   build-image:
     name: Run Jib builder
     runs-on: ubuntu-latest
@@ -45,11 +24,9 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Run Maven
-        run: mvn package
       - name: Build container image
         env:
           QUARKUS_JIB_BASE_REGISTRY_USERNAME: ${{ github.actor }}
           QUARKUS_JIB_BASE_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
           QUARKUS_CONTAINER_IMAGE_ADDITIONAL_TAGS: latest
-        run: mvn -Dquarkus.container-image.registry=ghcr.io -Dquarkus.container-image.name=poker-tracker -Dquarkus.container-image.group=fatih-catalkaya -Dquarkus.container-image.push=true -Dquarkus.container-image.builder=jib quarkus:image-build
+        run: mvn -Dquarkus.container-image.registry=ghcr.io -Dquarkus.container-image.name=poker-tracker -Dquarkus.container-image.group=fatih-catalkaya -Dquarkus.container-image.push=true quarkus:image-build

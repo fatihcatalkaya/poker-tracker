@@ -1,5 +1,7 @@
-*
-!target/*-runner
-!target/*-runner.jar
-!target/lib/*
-!target/quarkus-app/*
+target/*
+.github/*
+.idea/*
+.mvn/*
+poker.sqlite
+*.md
+Dockerfile
